@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html data-ng-app="app">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Waitstaff Calculator</title>
+    <link rel="stylesheet" href="components/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/main.css"/>
+</head>
+<body>
+<div class="container" data-ng-controller="mainController as mainCtrl">
+    <div class="page-header">
+        <h1>Waitstaff Calculator</h1>
+    </div>
+    <div class="row">
+        <div class="col-md-7">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Enter the Meal Details</div>
+                <div class="panel-body">
+                    <form name="mealDetails" class="form-horizontal" novalidate="novalidate" role="form">
+                        <div class="form-group"
+                             data-ng-class="{ 'has-error': mealDetails.mealPrice.$invalid && mealDetails.mealPrice.$touched }">
+                            <label for="mealPrice" class="col-sm-3 control-label">Base Meal Price</label>
+
+                            <div class="col-sm-5">
+                                <input type="number" required="required" name="mealPrice" id="mealPrice"
+                                       class="form-control" data-ng-model="mainCtrl.mealPrice"/>
+
+                                <div data-ng-if="mealDetails.mealPrice.$touched"
+                                     data-ng-messages="mealDetails.mealPrice.$error">
+                                    <span class="help-block" data-ng-message="required">required field</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group"
+                             data-ng-class="{ 'has-error': mealDetails.taxRate.$invalid && mealDetails.taxRate.$touched}">
+                            <label for="taxRate" class="col-sm-3 control-label">Tax Rate %</label>
+
+                            <div class="col-sm-2">
+                                <input type="number" required="required" name="taxRate" id="taxRate"
+                                       class="form-control" data-ng-model="mainCtrl.taxRate"/>
+
+                                <div data-ng-if="mealDetails.taxRate.$touched"
+                                     data-ng-messages="mealDetails.taxRate.$error">
+                                    <span class="help-block" data-ng-message="required">required field</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group"
+                             data-ng-class="{ 'has-error': mealDetails.tipPercent.$invalid && mealDetails.tipPercent.$touched}">
+                            <label for="tipPercent" class="col-sm-3 control-label">Tip Percentage %</label>
+
+                            <div class="col-sm-2">
+                                <input type="number" required="required" name="tipPercent" id="tipPercent"
+                                       class="form-control" data-ng-model="mainCtrl.tipPercent"/>
+
+                                <div data-ng-if="mealDetails.tipPercent.$touched"
+                                     data-ng-messages="mealDetails.tipPercent.$error">
+                                    <span class="help-block" data-ng-message="required">required field</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-offset-3 col-md-9">
+                            <button type="button" class="btn btn-primary" data-ng-disabled="mealDetails.$invalid"
+                                    data-ng-click="mainCtrl.submit();">Submit
+                            </button>
+                            <button type="button" class="btn btn-default" data-ng-click="mainCtrl.cancel()">Cancel
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Customer Charges</div>
+                <div class="panel-body">
+                    <h4>Subtotal <span>{{mainCtrl.subTotal | currency}}</span></h4>
+                    <h4>Tip <span>{{mainCtrl.tip | currency}}</span></h4>
+                    <hr/>
+                    <h4>Total <span>{{mainCtrl.total | currency}}</span></h4>
+                </div>
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">My Earnings Info</div>
+                <div class="panel-body">
+                    <h4>Tip Total <span>{{mainCtrl.tipTotal | currency}}</span></h4>
+                    <h4>Meal Count <span>{{mainCtrl.mealCount}}</span></h4>
+                    <h4>Average Tip Per Meal <span>{{mainCtrl.average | currency}}</span></h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="pull-right">
+                <button type="button" class="btn btn-default" data-ng-click="mainCtrl.reset()">Reset All</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Scripts -->
+<script src="components/jquery/dist/jquery.min.js"></script>
+<script src="components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="components/angularjs/angular.min.js"></script>
+<script src="components/angular-messages/angular-messages.min.js"></script>
+<script src="components/angular-animate/angular-animate.min.js"></script>
+<script src="src/app.min.js"></script>
+</body>
+</html>
