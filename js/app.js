@@ -3,8 +3,13 @@
  */
 (function () {
     "use strict";
-    angular.module('app', ['ngMessages','ngAnimate'])
-        .controller('mainController', function(){
+    var app = angular.module('app', [
+        'ui.router',
+        'ngAnimate',
+        'ngMessages',
+        'LocalStorageModule'
+    ])
+        .controller('mainController', [ '$scope', '$state',  function($scope, $state){
             var mainCtrl = this;
 
             mainCtrl.mealCount = 0;
@@ -18,6 +23,8 @@
                 mainCtrl.tipTotal = mainCtrl.tip;
                 mainCtrl.mealCount = mainCtrl.mealCount + 1;
                 mainCtrl.average = mainCtrl.tipTotal / mainCtrl.mealCount;
+
+               $state.go('meals')
 
             };
             mainCtrl.cancel = function(){
@@ -38,5 +45,6 @@
                 mainCtrl.mealCount = null;
                 mainCtrl.average = null;
             };
-        });
+
+        }])
 }());

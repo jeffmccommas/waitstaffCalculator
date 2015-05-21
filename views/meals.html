@@ -1,10 +1,27 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+<div class="row">
+    <div class="col-md-offset-2 col-md-8 col-md-offset-2">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Customer Charges</div>
+            <div class="panel-body">
+                <h4>Subtotal <span>{{mainCtrl.subTotal | currency}}</span></h4>
+                <h4>Tip <span>{{mainCtrl.tip | currency}}</span></h4>
+                <hr/>
+                <h4>Total <span>{{mainCtrl.total | currency}}</span></h4>
+            </div>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">My Earnings Info</div>
+            <div class="panel-body">
+                <h4>Tip Total <span>{{mainCtrl.tipTotal | currency}}</span></h4>
+                <h4>Meal Count <span>{{mainCtrl.mealCount}}</span></h4>
+                <h4>Average Tip Per Meal <span>{{mainCtrl.average | currency}}</span></h4>
+            </div>
+        </div>
+    </div>
 
-</body>
-</html>
+    <div class="col-md-12">
+        <div class="pull-right">
+            <button type="button" class="btn btn-default" data-ng-click="mainCtrl.reset()">Reset All</button>
+        </div>
+    </div>
+</div>
