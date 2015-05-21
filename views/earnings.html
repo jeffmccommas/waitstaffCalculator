@@ -1,0 +1,60 @@
+<div class="row">
+    <div class="col-md-6 col-md-offset-4">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Enter the Meal Details</div>
+            <div class="panel-body">
+                <form name="mealDetails" class="form-horizontal" novalidate="novalidate" role="form">
+                    <div class="form-group"
+                         data-ng-class="{ 'has-error': mealDetails.mealPrice.$invalid && mealDetails.mealPrice.$touched }">
+                        <label for="mealPrice" class="col-sm-3 control-label">Base Meal Price</label>
+
+                        <div class="col-sm-5">
+                            <input type="number" required="required" name="mealPrice" id="mealPrice"
+                                   class="form-control" data-ng-model="mainCtrl.mealPrice"/>
+
+                            <div data-ng-if="mealDetails.mealPrice.$touched"
+                                 data-ng-messages="mealDetails.mealPrice.$error">
+                                <span class="help-block" data-ng-message="required">required field</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group"
+                         data-ng-class="{ 'has-error': mealDetails.taxRate.$invalid && mealDetails.taxRate.$touched}">
+                        <label for="taxRate" class="col-sm-3 control-label">Tax Rate %</label>
+
+                        <div class="col-sm-2">
+                            <input type="number" required="required" name="taxRate" id="taxRate"
+                                   class="form-control" data-ng-model="mainCtrl.taxRate"/>
+
+                            <div data-ng-if="mealDetails.taxRate.$touched"
+                                 data-ng-messages="mealDetails.taxRate.$error">
+                                <span class="help-block" data-ng-message="required">required field</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group"
+                         data-ng-class="{ 'has-error': mealDetails.tipPercent.$invalid && mealDetails.tipPercent.$touched}">
+                        <label for="tipPercent" class="col-sm-3 control-label">Tip Percentage %</label>
+
+                        <div class="col-sm-2">
+                            <input type="number" required="required" name="tipPercent" id="tipPercent"
+                                   class="form-control" data-ng-model="mainCtrl.tipPercent"/>
+
+                            <div data-ng-if="mealDetails.tipPercent.$touched"
+                                 data-ng-messages="mealDetails.tipPercent.$error">
+                                <span class="help-block" data-ng-message="required">required field</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-offset-3 col-md-9">
+                        <button type="button" class="btn btn-primary" data-ng-disabled="mealDetails.$invalid"
+                                data-ng-click="mainCtrl.submit();">Submit
+                        </button>
+                        <button type="button" class="btn btn-default" data-ng-click="mainCtrl.cancel()">Cancel
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
